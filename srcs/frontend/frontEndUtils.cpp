@@ -6,7 +6,7 @@
 /*   By: thiew <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 13:31:58 by thiew             #+#    #+#             */
-/*   Updated: 2025/04/08 13:44:50 by thiew            ###   ########.fr       */
+/*   Updated: 2025/04/08 14:59:01 by thiew            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ void checkInput(std::atomic<bool>	&exit_flag, std::atomic<char> &input_char)
 		{
 			last_event = ::steady_clock::now();
 			input_char = c;
+			if (input_char == 'q')
+				exit_flag = true;
 		}
 		
 		::steady_clock::time_point now = ::steady_clock::now();
