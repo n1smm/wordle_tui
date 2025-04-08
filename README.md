@@ -47,3 +47,18 @@
 @called by: main
 */
 ```
+
+### structure
+```
+this will be passed to backend std::string wordl;
+
+backend functions:
+- random word
+- check if valid word - returns enums with error codes
+- check valid positions - returns std::vector with codes in right positions
+- sth used chars - returns std::vector with codes in right positions
+
+frontend:
+
+
+
