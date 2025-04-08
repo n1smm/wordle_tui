@@ -6,7 +6,7 @@
 /*   By: thiew <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/16 01:23:20 by thiew             #+#    #+#             */
-/*   Updated: 2025/03/31 16:38:30 by tjuvan           ###   ########.fr       */
+/*   Updated: 2025/04/08 13:35:04 by thiew            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,3 +29,5 @@
 #include <random>
 #include "structs.hpp"
 #include "debug.hpp"
+
+using namespace std::chrono;
