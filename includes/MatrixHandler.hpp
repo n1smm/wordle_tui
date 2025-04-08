@@ -1,30 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.hpp                                           :+:      :+:    :+:   */
+/*   MatrixHandler.hpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thiew <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/17 16:36:23 by thiew             #+#    #+#             */
-/*   Updated: 2025/04/08 20:33:59 by thiew            ###   ########.fr       */
+/*   Created: 2025/04/08 19:42:12 by thiew             #+#    #+#             */
+/*   Updated: 2025/04/08 21:52:16 by thiew            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#include "externLibs.hpp" // also includes structs
+#include "externLibs.hpp"
 #include "assets.hpp"
 #include "colors.hpp"
-#include "frontend.hpp"
-#include "MatrixHandler.hpp"
 
 
-//utils.cpp
+class MatrixHandler
+{
+	public:
+		MatrixHandler( void );
+		void		draw();
+		void		recalculate();
 
-void 	die(int i);
-void	cleanup();
-int 	getRandomNumber(int min, int max);
+	private:
+		std::vector<std::vector<const char *>>	_draw_matrix;
 
 
-
-
+};
