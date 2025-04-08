@@ -1,16 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   debug_main.cpp                                     :+:      :+:    :+:   */
+/*   error.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/08 15:16:28 by alerusso          #+#    #+#             */
-/*   Updated: 2025/04/08 15:16:43 by alerusso         ###   ########.fr       */
+/*   Created: 2025/04/08 16:33:47 by alerusso          #+#    #+#             */
+/*   Updated: 2025/04/08 17:14:53 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	main()
+#include "data.hpp"
+
+int	error_backend(int error_type)
 {
-	return (0);
+	if (error_type == E_MALLOC)
+		debugPrint("Backend:\tmalloc failure\n");
+	BackendQuit();
+	exit(1);
 }
