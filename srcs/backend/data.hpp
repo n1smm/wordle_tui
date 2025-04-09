@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 13:32:24 by alerusso          #+#    #+#             */
-/*   Updated: 2025/04/08 17:20:26 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/04/09 13:07:22 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,11 +61,15 @@ typedef struct Back
 typedef struct s_words
 {
 	char	**num;
+	int		size;
+	int		last;
 }t_words;
 
 typedef struct s_back_private
 {
 	t_words	**words;
+	char	*debug[30000];
+	int		index;
 	Back	*back;
 }t_back_private;
 
@@ -97,7 +101,7 @@ enum	Alphabet
 	LETTER_X,
 	LETTER_Y,
 	LETTER_Z,
-	LETTERS_NUM,
+	ALPHABET_SIZE,
 };
 
 enum CheckInput
@@ -120,29 +124,24 @@ enum e_errors
 
 //NOTE - Includes functions (../../includes)
 
-template<typename... Args>
-void	debugPrint(Args... args)
-{
-	std::ofstream debugFile("debug.log", std::ios::app);
-	if (debugFile.is_open())
-	{
-		((debugFile << args << " "), ...) << std::endl;
-		debugFile.close();
-	}
-	else
-		std::cerr << "failed to open debug.log" << std::endl;
-}
-
 //NOTE - Private functions internal for backend
 
 t_back_private	*getter_backend(t_back_private *data, char update);
 void			*ft_calloc(size_t nmemb, size_t size);
+size_t			ft_strlen(const char *s);
+int				ft_isalpha(char *s);
+int				tokenize(char c);
 int				error_backend(int error_type);
-
+void			alloc_back_struct(t_words ***word_struct, int nmemb);
+void			alloc_word_matrix(char ***word_matrix, int nmemb);
+void			realloc_word_matrix(t_words *words);
+void			*free_matrix(void ***matrix);
+void			free_and_null(void **ptr);
+void			get_dictionary(t_back_private *data);
 
 //NOTE - Public functions to use in frontend
 
 Back	*BackendInit(void);
-void	BackendQuit(void);
+void	*BackendQuit(void);
 
 #endif

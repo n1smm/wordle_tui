@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 16:55:26 by alerusso          #+#    #+#             */
-/*   Updated: 2025/04/08 16:56:33 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/04/09 11:19:54 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,25 @@ void	*ft_calloc(size_t nmemb, size_t size)
 		return (NULL);
 	ft_memset(pointer, 0, total_size);
 	return (pointer);
+}
+
+size_t	ft_strlen(const char *s)
+{
+	size_t	strlen;
+
+	strlen = 0;
+	while ((*s++ != '\0'))
+		++strlen;
+	return (strlen);
+}
+
+int	ft_isalpha(char *s)
+{
+	while (*s)
+	{
+		if (!((*s >= 'a') && (*s <= 'z')) && !((*s >= 'A') && (*s <= 'Z')))
+			return (0);
+		++s;
+	}
+	return (1);
 }
