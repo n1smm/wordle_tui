@@ -6,13 +6,21 @@
 /*   By: thiew <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 13:31:58 by thiew             #+#    #+#             */
-/*   Updated: 2025/04/08 20:56:04 by thiew            ###   ########.fr       */
+/*   Updated: 2025/04/09 11:02:34 by thiew            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/frontend.hpp"
 
-
+/*
+   @description: this sets the terminal in the TUI mode that we want
+   				- noncanonical
+				- nonblocking
+				- alternate buffer
+				at the end it sets the terminal back to original
+	@called by: main
+	@param: a bool that needs to be sent true at start of program and false at end
+*/
 void setNonCanonicalMode(bool enable) 
 {
     static struct termios oldt, newt;
@@ -38,6 +46,11 @@ void setNonCanonicalMode(bool enable)
     }
 }
 
+/*
+   @description: this is loop/thread that checks continuously for user input
+   @params: exit_flag is set if right key is pressed, input_char - user input (1 char at a time)
+   @called by: input thread in main
+*/
 void checkInput(std::atomic<bool>	&exit_flag, std::atomic<char> &input_char)
 {
 	::steady_clock::time_point last_event = ::steady_clock::now();
@@ -62,6 +75,11 @@ void checkInput(std::atomic<bool>	&exit_flag, std::atomic<char> &input_char)
     }
 }
 
+
+/*
+   @description: checks terminal window size and sets a struct with apropriate values
+   @calledby: main and WinSizeHandler
+*/
 winInfo	getWinSize()
 {
 	struct winsize w;
@@ -89,6 +107,9 @@ winInfo	getWinSize()
 	return (ret);
 }
 
+/* 
+   @description: is run when SIGWINCH signal is sent
+*/
 void	winSizeHandler(int i)
 {
 	(void)i;
