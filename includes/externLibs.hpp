@@ -6,7 +6,7 @@
 /*   By: thiew <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/16 01:23:20 by thiew             #+#    #+#             */
-/*   Updated: 2025/04/09 15:22:46 by thiew            ###   ########.fr       */
+/*   Updated: 2025/04/09 16:26:56 by thiew            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,3 +39,4 @@ extern winInfo 				g_win_size;
 extern std::atomic<bool>	g_exit_flag;
 extern bool					g_win_change;
 extern bool					g_input;
+extern std::atomic<char>	g_input_char; //char received from user

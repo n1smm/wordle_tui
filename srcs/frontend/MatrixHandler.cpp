@@ -6,7 +6,7 @@
 /*   By: thiew <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 19:41:12 by thiew             #+#    #+#             */
-/*   Updated: 2025/04/09 15:01:44 by thiew            ###   ########.fr       */
+/*   Updated: 2025/04/09 17:25:13 by thiew            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,10 @@ std::string	macro_cast(const char *macro)
 	@called by: main
 */
 MatrixHandler::MatrixHandler(): 
-	_draw_matrix(g_win_size.height + 1, std::vector<std::string>(g_win_size.width + 1, macro_cast(EMPTY)))
+	_draw_matrix(g_win_size.height + 1, std::vector<std::string>(g_win_size.width + 1, macro_cast(EMPTY))),
+	_completed_words(6, std::string("00000")),
+	_curr_word(""),
+	_curr_line(2)
 {
 	for (size_t i  = 0; i < g_win_size.height; i++)
 	{
