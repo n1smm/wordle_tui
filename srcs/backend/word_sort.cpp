@@ -6,11 +6,11 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 12:42:58 by alerusso          #+#    #+#             */
-/*   Updated: 2025/04/09 18:46:34 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/04/09 19:51:40 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "data.hpp"
+#include "../../includes/data.hpp"
 
 char	*RandomWord(void)
 {

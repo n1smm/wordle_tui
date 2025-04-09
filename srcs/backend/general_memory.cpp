@@ -6,11 +6,11 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 08:58:39 by alerusso          #+#    #+#             */
-/*   Updated: 2025/04/09 14:12:28 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/04/09 19:48:52 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "data.hpp"
+#include "../../includes/data.hpp"
 
 void	alloc_back_struct(t_words ***word_struct, int nmemb)
 {

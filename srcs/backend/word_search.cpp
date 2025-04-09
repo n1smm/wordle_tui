@@ -6,11 +6,11 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 15:55:35 by alerusso          #+#    #+#             */
-/*   Updated: 2025/04/09 17:04:00 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/04/09 19:51:37 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "data.hpp"
+#include "../../includes/data.hpp"
 
 static int	check_guess(Back *back, char *input);
 static Back	*set_error(Back *back, int error);

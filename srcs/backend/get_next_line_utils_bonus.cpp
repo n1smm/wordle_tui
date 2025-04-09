@@ -6,11 +6,11 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 16:13:45 by alerusso          #+#    #+#             */
-/*   Updated: 2025/04/08 13:51:41 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/04/09 19:51:27 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line_bonus.hpp"
+#include "../../includes/get_next_line_bonus.hpp"
 
 void	*calloc_memcpy(int size, char *dest, char *src, int ft)
 {

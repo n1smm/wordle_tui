@@ -6,11 +6,11 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 16:13:11 by alerusso          #+#    #+#             */
-/*   Updated: 2025/04/08 13:51:44 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/04/09 19:51:15 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line_bonus.hpp"
+#include "../../includes/get_next_line_bonus.hpp"
 
 /*
 int	main()

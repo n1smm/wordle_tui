@@ -6,11 +6,11 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 15:47:56 by alerusso          #+#    #+#             */
-/*   Updated: 2025/04/09 18:29:58 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/04/09 19:51:35 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "data.hpp"
+#include "../../includes/data.hpp"
 
 static void	realloc_dictionary(char ***dict, int dict_size);
 

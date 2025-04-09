@@ -6,11 +6,11 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 11:13:39 by alerusso          #+#    #+#             */
-/*   Updated: 2025/04/09 17:14:16 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/04/09 19:48:50 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "data.hpp"
+#include "../../includes/data.hpp"
 
 int	tokenize(char c);
 

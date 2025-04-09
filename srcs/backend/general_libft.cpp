@@ -6,11 +6,11 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 16:55:26 by alerusso          #+#    #+#             */
-/*   Updated: 2025/04/09 17:27:09 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/04/09 19:48:42 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "data.hpp"
+#include "../../includes/data.hpp"
 
 static void	*ft_memset(void *s, int c, size_t n)
 {
