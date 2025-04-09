@@ -5,141 +5,99 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/09 16:13:45 by alerusso          #+#    #+#             */
-/*   Updated: 2025/04/09 20:11:43 by alerusso         ###   ########.fr       */
+/*   Created: 2023/11/23 15:44:22 by tjuvan            #+#    #+#             */
+/*   Updated: 2025/04/09 20:51:37 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/get_next_line_bonus.hpp"
 
-void	*calloc_memcpy(int size, char *dest, char *src, int ft)
+t_storage	*ft_lstlast(t_storage *root)
 {
-	int		total_size;
-	char	*string_pointer;
-	void	*pointer;
-
-	pointer = NULL;
-	if (ft == CALLOC)
-	{
-		total_size = size * sizeof(char);
-		pointer = malloc(total_size);
-		if (!pointer)
-			return (NULL);
-		string_pointer = (char *)pointer;
-		while (total_size--)
-			*string_pointer++ = 0;
-	}
-	if ((ft == MEMCPY) && ((dest) || (src)))
-	{
-		pointer = dest;
-		while ((size-- > 0) && (dest[1]) && (src[1]))
-		{
-			*(dest++) = *(src++);
-		}
-		*((char *)dest) = 0;
-	}
-	return (pointer);
+	if (!root)
+		return (NULL);
+	while (root->next != NULL)
+		root = root->next;
+	return (root);
 }
 
-int	find_end_line(size_t *start, char *string)
+void	deallocate(t_storage **root)
 {
-	int	save;
-	int	index;
+	t_storage	*tmp;
+	t_storage	*curr;
 
-	save = -1;
-	index = *start;
-	while (index >= 0)
+	curr = *root;
+	while (curr != NULL)
 	{
-		if ((string[index] == '\n') || (string[index] == '\n'))
-			save = index;
-		index -= 1;
+		tmp = curr;
+		curr = curr->next;
+		if (tmp->content != NULL)
+			free(tmp->content);
+		free(tmp);
 	}
-	if (save == -1)
-		return (EOF_OR_NEWLINE_NOT_FOUND);
-	*start = (size_t)save;
-	return (EOF_OR_NEWLINE_FOUND);
+	*root = NULL;
 }
 
-int	alloc_ft(void **content, void *new_content, size_t start, int mode)
+void	ft_lstadd_back(char *content, t_storage **root)
 {
-	size_t	nmemb;
-	void	*re_content;
+	t_storage	*curr;
+	t_storage	*new_ptr;
 
-	nmemb = (start + 1) * sizeof(char);
-	if (mode == MALLOC)
+	new_ptr = (t_storage *)malloc(sizeof(t_storage));
+	if (!new_ptr || !content)
+		return ;
+	new_ptr->content = content;
+	new_ptr->next = NULL;
+	if (*root == NULL)
 	{
-		*content = calloc_memcpy(((nmemb + 1) * 2), NULL, NULL, CALLOC);
-		if (!(*content))
-			return (FULL_MEMORY);
-		return (SUCCESS);
-	}
-	if (mode == REALLOC)
-	{
-		re_content = calloc_memcpy((nmemb) * 2, NULL, NULL, CALLOC);
-		if (!(re_content))
-			return (FULL_MEMORY);
-		calloc_memcpy(nmemb, (char *)re_content, (char *)new_content, MEMCPY);
-		free(*content);
-		*content = re_content;
-		return (SUCCESS);
-	}
-	if ((mode == FREE) && (*content))
-		free(*content);
-	*content = NULL;
-	return (END_OR_CORRUPTION);
-}
-
-void	trim_readbytes(char *buffer)
-{
-	int	old_index;
-	int	new_index;
-
-	if (!buffer)
-	{
+		*root = new_ptr;
 		return ;
 	}
-	old_index = 0;
-	new_index = 0;
-	while (buffer[old_index] != '\0' && buffer[old_index] != '\n')
-	{
-		++old_index;
-	}
-	if (buffer[old_index] == '\n')
-	{
-		++old_index;
-	}
-	while (buffer[old_index] != '\0')
-	{
-		buffer[new_index++] = buffer[old_index++];
-	}
-	buffer[new_index] = '\0';
+	curr = ft_lstlast(*root);
+	curr->next = new_ptr;
 }
 
-char	*_ft_strjoin(char *s1, char *s2)
+int	count_line(t_storage *root)
 {
-	char	*stringona;
-	int		index;
-	int		size;
+	t_storage	*curr;
+	int			count;
+	int			count_len;
 
-	if ((!s1) || (!s2))
-		return (NULL);
-	index = 0;
-	while (s1[index])
-		++index;
-	size = index;
-	index = 0;
-	while (s2[index])
-		++index;
-	size += index;
-	if (alloc_ft((void **)(&stringona), NULL, size + 1, MALLOC) == FULL_MEMORY)
-		return (NULL);
-	index = -1;
-	while (s1[++index])
-		stringona[index] = s1[index];
-	size = -1;
-	while (s2[++size])
-		stringona[index++] = s2[size];
-	free(s1);
-	free(s2);
-	return (stringona);
+	curr = root;
+	count_len = 0;
+	while (curr != NULL)
+	{
+		count = 0;
+		while (curr->content[count] != 0)
+		{
+			if (curr->content[count] == '\n')
+				return (count_len + 1);
+			count++;
+			count_len++;
+		}
+		curr = curr->next;
+	}
+	return (count_len);
+}
+
+int	check_list(t_storage *root)
+{
+	t_storage	*curr;
+	int			count;
+
+	curr = ft_lstlast(root);
+	if (curr == NULL)
+		return (-1);
+	while (curr != NULL)
+	{
+		count = 0;
+		while (curr->content[count] != 0)
+		{
+			if (curr->content[count] == '\n')
+				return (0);
+			count++;
+		}
+		curr = curr->next;
+	}
+	return (1);
 }

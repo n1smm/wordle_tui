@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 12:42:58 by alerusso          #+#    #+#             */
-/*   Updated: 2025/04/09 19:51:40 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/04/09 20:40:37 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,11 @@ char	*RandomWord(void)
 	t_back_private	*data;
 
 	data = getter_backend(NULL, _NO);
+	if (data->dict_size == 0)
+		return (NULL);
 	gettimeofday(&time_values, NULL);
+	while (time_values.tv_usec == 0)
+		gettimeofday(&time_values, NULL);
 	random_index = time_values.tv_usec % data->dict_size;
 	data->back->rand_word = data->dictionary[random_index];
 	return (data->dictionary[random_index]);

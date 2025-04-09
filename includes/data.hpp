@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 13:32:24 by alerusso          #+#    #+#             */
-/*   Updated: 2025/04/09 19:59:49 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/04/09 20:39:40 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,6 +134,7 @@ enum e_errors
 {
 	E_MALLOC,
 	E_OPEN,
+	E_EMPTY_DIC,
 };
 
 //NOTE - Public functions to use in frontend
