@@ -6,7 +6,7 @@
 /*   By: thiew <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 19:41:12 by thiew             #+#    #+#             */
-/*   Updated: 2025/04/09 17:25:13 by thiew            ###   ########.fr       */
+/*   Updated: 2025/04/09 23:08:32 by thiew            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,17 @@ std::string	macro_cast(const char *macro)
    				- _draw_matrix
 	@called by: main
 */
-MatrixHandler::MatrixHandler(): 
+MatrixHandler::MatrixHandler(Back *backend): 
 	_draw_matrix(g_win_size.height + 1, std::vector<std::string>(g_win_size.width + 1, macro_cast(EMPTY))),
 	_completed_words(6, std::string("00000")),
+	_completed_words_pos(6, std::string("00000")),
 	_curr_word(""),
-	_curr_line(2)
+	_curr_line(2),
+	_backend(backend),
+	_full_word(false),
+	_correct_word(false),
+	_winner(false),
+	_looser(false)
 {
 	for (size_t i  = 0; i < g_win_size.height; i++)
 	{
@@ -75,7 +81,49 @@ void	MatrixHandler::draw()
 		return ;
 	}
 
+	//winning screen
+	if (_winner)
+	{
+		std::string error_msg = "YOU WON!!";
+		for (size_t i = 0; i < g_win_size.height; i++)
+		{
+			for (size_t j = 0; j < g_win_size.width; j++)
+			{
+				if (i == g_win_size.height / 2
+						&& j == (g_win_size.width / 2) - (error_msg.size() / 2))
+				{
+					std::cout << error_msg;
+					j += error_msg.size();
+				}
+				std::cout << macro_cast(WALL);
+			}
+			std::cout << "\n";
+		}
+		return ;
+	}
 
+	// loosing screen
+	if (_looser)
+	{
+		std::string error_msg = "LOOSER";
+		for (size_t i = 0; i < g_win_size.height; i++)
+		{
+			for (size_t j = 0; j < g_win_size.width; j++)
+			{
+				if (i == g_win_size.height / 2
+						&& j == (g_win_size.width / 2) - (error_msg.size() / 2))
+				{
+					std::cout << error_msg;
+					j += error_msg.size();
+				}
+				std::cout << macro_cast(WALL);
+			}
+			std::cout << "\n";
+		}
+		return ;
+	}
+
+	//normal screen
 	for (size_t i = 0; i < _draw_matrix.size(); i++)
 	{
 		for (size_t j = 0; j < _draw_matrix[i].size(); j++)

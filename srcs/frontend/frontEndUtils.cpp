@@ -6,7 +6,7 @@
 /*   By: thiew <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 13:31:58 by thiew             #+#    #+#             */
-/*   Updated: 2025/04/09 17:11:17 by thiew            ###   ########.fr       */
+/*   Updated: 2025/04/09 23:09:27 by thiew            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void checkInput(std::atomic<bool>	&exit_flag, std::atomic<char> &input_char)
 			last_event = ::steady_clock::now();
 			input_char = c;
 			g_input = true;
-			if (input_char == 'q')
+			if (input_char == ESCAPE)
 				exit_flag = true;
 			else
 			{

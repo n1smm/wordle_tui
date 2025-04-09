@@ -6,7 +6,7 @@
 /*   By: thiew <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 12:00:36 by thiew             #+#    #+#             */
-/*   Updated: 2025/04/09 17:12:21 by thiew            ###   ########.fr       */
+/*   Updated: 2025/04/09 22:25:59 by thiew            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,12 @@ int	main(void)
 	//set initial window size
 	g_win_size = getWinSize();
 
+	//init backend
+	Back	*backend = BackendInit();
+	char *random_word = RandomWord();
+	debugPrint(backend->rand_word);
+	debugPrint(random_word);
+
 	//switch to TUI
 	setNonCanonicalMode(true);
 
@@ -36,7 +42,7 @@ int	main(void)
 	std::thread	input_thread(checkInput, std::ref(g_exit_flag), std::ref(g_input_char));
 
 	//instatialize MatrixHandler
-	MatrixHandler Matrix;
+	MatrixHandler Matrix(backend);
 
 	//recalculate window size on change
 	signal(SIGWINCH, winSizeHandler);
@@ -52,16 +58,18 @@ int	main(void)
 		{
 			Matrix.wordInput();
 			Matrix.recalculate();
-			g_input = false;
 			Matrix.rows();
 			Matrix.draw();
+			g_input = false;
 		}
-		usleep(8000);
+		usleep(80000);
 	}
 	std::cout << CURSOR;
 
 	//cleaning up
 	g_exit_flag = true;
+	BackendQuit();
+	(void)backend;
 	input_thread.join();
 	setNonCanonicalMode(false);
 	std::cout << std::endl << "FINISHED" << std::endl;
