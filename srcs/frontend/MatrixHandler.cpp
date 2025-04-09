@@ -6,7 +6,7 @@
 /*   By: thiew <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 19:41:12 by thiew             #+#    #+#             */
-/*   Updated: 2025/04/09 10:55:06 by thiew            ###   ########.fr       */
+/*   Updated: 2025/04/09 12:43:00 by thiew            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,28 @@ MatrixHandler::MatrixHandler():
 */
 void	MatrixHandler::draw()
 {
+	// check if window is to small
+	if (g_win_size.height < 35 || g_win_size.width < 55)
+	{
+		std::string error_msg = "WINDOW IS TO SMALL!";
+		for (size_t i = 0; i < g_win_size.height; i++)
+		{
+			for (size_t j = 0; j < g_win_size.width; j++)
+			{
+				if (i == g_win_size.height / 2
+						&& j == (g_win_size.width / 2) - (error_msg.size() / 2))
+				{
+					std::cout << error_msg;
+					j += error_msg.size();
+				}
+				std::cout << WALL;
+			}
+			std::cout << "\n";
+		}
+		return ;
+	}
+
+
 	for (size_t i = 0; i < _draw_matrix.size(); i++)
 	{
 		for (size_t j = 0; j < _draw_matrix[i].size(); j++)

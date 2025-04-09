@@ -6,7 +6,7 @@
 /*   By: tjuvan <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/30 21:25:22 by tjuvan            #+#    #+#             */
-/*   Updated: 2025/04/08 11:55:32 by thiew            ###   ########.fr       */
+/*   Updated: 2025/04/09 13:03:31 by thiew            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 
 // Reset
 #define RESET "\033[0m"
+#define FG_RESET "\033[42m"
+#define BG_RESET "\033[0m"
+
 
 #define BLACK "\033[30m"
 #define RED "\033[31m"
@@ -32,4 +35,9 @@
 #define BRIGHT_MAGENTA "\033[95m"
 #define BRIGHT_CYAN "\033[96m"
 #define BRIGHT_WHITE "\033[97m"
+
+
+//background
+#define GREEN_BG "\033[42m"
+
 

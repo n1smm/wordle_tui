@@ -6,7 +6,7 @@
 /*   By: tjuvan <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/30 20:33:21 by tjuvan            #+#    #+#             */
-/*   Updated: 2025/04/08 19:36:00 by thiew            ###   ########.fr       */
+/*   Updated: 2025/04/09 11:41:57 by thiew            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 #define EMPTY		" "
 
 
-//hitables
+//walls
 #define V_LINE		"║"
 #define H_LINE		"═"
 #define RU_ANGLE	"╗"

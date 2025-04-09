@@ -6,7 +6,7 @@
 /*   By: thiew <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 12:00:36 by thiew             #+#    #+#             */
-/*   Updated: 2025/04/08 22:01:53 by thiew            ###   ########.fr       */
+/*   Updated: 2025/04/09 11:49:14 by thiew            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ int	main(void)
 	while (!g_exit_flag)
 	{
 		Matrix.recalculate();
+		Matrix.rows();
 		Matrix.draw();
 		usleep(5000);
 	}
