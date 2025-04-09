@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 16:04:17 by alerusso          #+#    #+#             */
-/*   Updated: 2025/04/09 15:06:30 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/04/09 16:11:32 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,11 +61,6 @@ void	*BackendQuit(void)
 	mem = getter_backend(NULL, _NO);
 	if (!mem)
 		return (NULL);
-	if (mem->back)
-	{
-		free_and_null((void **)&mem->back->user_input);
-		free_and_null((void **)&mem->back->check_input);
-	}
 	free_and_null((void **)&mem->back);
 	if (!mem->words)
 		return (NULL);

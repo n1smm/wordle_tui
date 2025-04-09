@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 15:47:56 by alerusso          #+#    #+#             */
-/*   Updated: 2025/04/09 14:57:43 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/04/09 18:29:58 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	insert_one(t_words **words, char *line, char **dict, int *index)
 	int	second_l;
 	int	i;
 
-	if (ft_strlen(line) != 6)
+	if (ft_strlen(line) != 5)
 		return (free(line));
 	line[5] = 0;
 	if (!ft_isalpha(line))
@@ -44,6 +44,8 @@ void	get_dictionary(t_back_private *data)
 	char	*line;
 
 	fd = open(DICTIONARY_NAME, O_RDONLY, 0666);
+	if (fd < 0)
+		error_backend(E_OPEN);
 	line = get_next_line(fd);
 	max_size = 1;
 	while (line)

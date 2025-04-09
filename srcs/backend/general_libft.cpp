@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 16:55:26 by alerusso          #+#    #+#             */
-/*   Updated: 2025/04/09 11:19:54 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/04/09 17:27:09 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ size_t	ft_strlen(const char *s)
 	size_t	strlen;
 
 	strlen = 0;
-	while ((*s++ != '\0'))
+	while ((s[strlen] && s[strlen] != '\n'))
 		++strlen;
 	return (strlen);
 }
@@ -57,8 +57,26 @@ int	ft_isalpha(char *s)
 	while (*s)
 	{
 		if (!((*s >= 'a') && (*s <= 'z')) && !((*s >= 'A') && (*s <= 'Z')))
-			return (0);
+			if (*s != '\n')
+				return (0);
 		++s;
 	}
 	return (1);
+}
+
+char	*ft_strchr(const char *s, int c)
+{
+	if (!s)
+		return (NULL);
+	while (*s != '\0')
+	{
+		if (*s == (unsigned char)c)
+		{
+			return ((char *)s);
+		}
+		++s;
+	}
+	if (c == 0)
+		return ((char *)s);
+	return (NULL);
 }

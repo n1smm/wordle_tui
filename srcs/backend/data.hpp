@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 13:32:24 by alerusso          #+#    #+#             */
-/*   Updated: 2025/04/09 15:13:09 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/04/09 18:46:22 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,10 @@ backend functions:
 */
 typedef struct Back
 {
-	char	*rand_word;
-	char	*user_input;
-	char	*check_input;
-	char	valid_input:2;
-	char	victory:1;
+	char			check_input[6];
+	char			*rand_word;
+	unsigned char	valid_input:3;
+	unsigned char	victory:2;
 }Back;
 
 typedef struct s_words
@@ -105,11 +104,24 @@ enum	Alphabet
 	ALPHABET_SIZE,
 };
 
+//REVIEW - CheckInput
+/*
+	
+*/
+
 enum CheckInput
 {
 	WRONG_LETTER,
 	WRONG_POSITION,
 	RIGHT_LETTER,
+};
+
+enum InputErrors
+{
+	RIGHT_INPUT,
+	WRONG_LEN,
+	WRONG_CHAR,
+	NOT_IN_DICTIONARY,
 };
 
 enum e_bools
@@ -121,29 +133,45 @@ enum e_bools
 enum e_errors
 {
 	E_MALLOC,
+	E_OPEN,
 };
-
-//NOTE - Includes functions (../../includes)
-
-//NOTE - Private functions internal for backend
-
-t_back_private	*getter_backend(t_back_private *data, char update);
-void			*ft_calloc(size_t nmemb, size_t size);
-size_t			ft_strlen(const char *s);
-int				ft_isalpha(char *s);
-int				tokenize(char c);
-int				error_backend(int error_type);
-void			alloc_back_struct(t_words ***word_struct, int nmemb);
-void			alloc_word_matrix(char ***word_matrix, int nmemb);
-void			realloc_word_matrix(t_words *words);
-void			*free_matrix(void ***matrix);
-void			free_and_null(void **ptr);
-void			get_dictionary(t_back_private *data);
 
 //NOTE - Public functions to use in frontend
 
 Back	*BackendInit(void);
 void	*BackendQuit(void);
 char	*RandomWord(void);
+Back	*WordSearch(char *input);
+
+//NOTE - Private functions internal for backend
+
+//SECTION - Memory management
+
+t_back_private	*getter_backend(t_back_private *data, char update);
+void			alloc_back_struct(t_words ***word_struct, int nmemb);
+void			alloc_word_matrix(char ***word_matrix, int nmemb);
+void			realloc_word_matrix(t_words *words);
+void			*free_matrix(void ***matrix);
+void			free_and_null(void **ptr);
+
+//SECTION - Libft
+
+void			*ft_calloc(size_t nmemb, size_t size);
+size_t			ft_strlen(const char *s);
+int				ft_isalpha(char *s);
+char			*ft_strchr(const char *s, int c);
+int				ft_strncmp(const char *s1, const char *s2, size_t n);
+
+//SECTION - General
+
+int				tokenize(char c);
+
+//SECTION - Error management
+
+int				error_backend(int error_type);
+
+//SECTION - Get dictionary
+
+void			get_dictionary(t_back_private *data);
 
 #endif
