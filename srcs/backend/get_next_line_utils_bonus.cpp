@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 16:13:45 by alerusso          #+#    #+#             */
-/*   Updated: 2025/04/09 19:51:27 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/04/09 20:11:43 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	*calloc_memcpy(int size, char *dest, char *src, int ft)
 	if ((ft == MEMCPY) && ((dest) || (src)))
 	{
 		pointer = dest;
-		while ((size-- > 0) && (dest + 1) && (src + 1))
+		while ((size-- > 0) && (dest[1]) && (src[1]))
 		{
 			*(dest++) = *(src++);
 		}

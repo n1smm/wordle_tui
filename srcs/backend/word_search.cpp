@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 15:55:35 by alerusso          #+#    #+#             */
-/*   Updated: 2025/04/09 19:51:37 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/04/09 20:01:42 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,6 @@ static Back	*set_error(Back *back, int error);
 
 Back	*WordSearch(char *input)
 {
-	int				first_l;
-	int				second_l;
-	int				i;
 	t_back_private	*data;
 
 	data = getter_backend(NULL, _NO);
@@ -29,18 +26,31 @@ Back	*WordSearch(char *input)
 		return (set_error(data->back, WRONG_CHAR));
 	if (check_guess(data->back, input))
 		return (set_error(data->back, RIGHT_INPUT));
+	DictCheck(input);
+	return (data->back);
+}
+
+bool	DictCheck(char *input)
+{
+	int				first_l;
+	int				second_l;
+	int				i;
+	t_back_private	*data;
+
+	data = getter_backend(NULL, _NO);
 	first_l = tokenize(input[0]);
 	second_l = tokenize(input[1]);
 	if (!data->words[first_l][second_l].num)
-		return (set_error(data->back, NOT_IN_DICTIONARY));
+		return (set_error(data->back, NOT_IN_DICTIONARY), _NO);
 	i = -1;
 	while (data->words[first_l][second_l].num[++i])
 	{
 		if (!ft_strncmp(input, data->words[first_l][second_l].num[i], 5))
-			return (set_error(data->back, RIGHT_INPUT));
+			return (set_error(data->back, RIGHT_INPUT), _YES);
 	}
-	return (set_error(data->back, NOT_IN_DICTIONARY));
+	return (set_error(data->back, NOT_IN_DICTIONARY), _NO);
 }
+
 static int	check_guess(Back *back, char *input)
 {
 	int	i;

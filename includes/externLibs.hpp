@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   externLibs.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thiew <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/16 01:23:20 by thiew             #+#    #+#             */
-/*   Updated: 2025/04/09 16:26:56 by thiew            ###   ########.fr       */
+/*   Updated: 2025/04/09 19:52:28 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@
 #include <signal.h>
 #include "structs.hpp"
 #include "debug.hpp"
+#include "data.hpp"
+#include "get_next_line_bonus.hpp"
 
 using namespace std::chrono;
 
