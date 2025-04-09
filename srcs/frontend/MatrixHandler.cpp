@@ -6,12 +6,18 @@
 /*   By: thiew <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 19:41:12 by thiew             #+#    #+#             */
-/*   Updated: 2025/04/09 12:43:00 by thiew            ###   ########.fr       */
+/*   Updated: 2025/04/09 15:01:44 by thiew            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "../../includes/MatrixHandler.hpp"
+
+
+std::string	macro_cast(const char *macro)
+{
+	return (std::string(macro));
+}
 
 /*
    @description: constructor that initializes all the variables of the class
@@ -19,7 +25,7 @@
 	@called by: main
 */
 MatrixHandler::MatrixHandler(): 
-	_draw_matrix(g_win_size.height + 1, std::vector<const char *>(g_win_size.width + 1, EMPTY))
+	_draw_matrix(g_win_size.height + 1, std::vector<std::string>(g_win_size.width + 1, macro_cast(EMPTY)))
 {
 	for (size_t i  = 0; i < g_win_size.height; i++)
 	{
@@ -27,12 +33,12 @@ MatrixHandler::MatrixHandler():
 		{
 			if (static_cast<size_t>(j) == g_win_size.field_left 
 					|| static_cast<size_t>(j) == g_win_size.field_w)
-				_draw_matrix[i][j] = V_LINE;
+				_draw_matrix[i][j] = macro_cast(V_LINE);
 			else if (static_cast<size_t>(i) == g_win_size.field_up 
 					|| static_cast<size_t>(i) == g_win_size.field_h)
-				_draw_matrix[i][j] = H_LINE;
+				_draw_matrix[i][j] = macro_cast(H_LINE);
 			else
-				_draw_matrix[i][j] = EMPTY;
+				_draw_matrix[i][j] = macro_cast(EMPTY);
 		}
 	}
 
@@ -59,7 +65,7 @@ void	MatrixHandler::draw()
 					std::cout << error_msg;
 					j += error_msg.size();
 				}
-				std::cout << WALL;
+				std::cout << macro_cast(WALL);
 			}
 			std::cout << "\n";
 		}
@@ -87,10 +93,11 @@ void	MatrixHandler::recalculate()
 	if (g_win_change == false)
 		return ;
 
+	_draw_matrix.clear();	
 	_draw_matrix.resize(g_win_size.height + 1);
 	for (size_t i = 0; i < g_win_size.height; i++)
 	{
-		_draw_matrix[i].resize(g_win_size.width + 1, EMPTY);
+		_draw_matrix[i].resize(g_win_size.width + 1, macro_cast(EMPTY));
 	}
 
 	for (size_t i = 0; i < g_win_size.height; i++)
@@ -99,12 +106,12 @@ void	MatrixHandler::recalculate()
 		{
 			if (static_cast<size_t>(j) == g_win_size.field_left 
 					|| static_cast<size_t>(j) == g_win_size.field_w)
-				_draw_matrix[i][j] = V_LINE;
+				_draw_matrix[i][j] = macro_cast(V_LINE);
 			else if (static_cast<size_t>(i) == g_win_size.field_up 
 					|| static_cast<size_t>(i) == g_win_size.field_h)
-				_draw_matrix[i][j] = H_LINE;
+				_draw_matrix[i][j] = macro_cast(H_LINE);
 			else
-				_draw_matrix[i][j] = EMPTY;
+				_draw_matrix[i][j] = macro_cast(EMPTY);
 		}
 	}
 	g_win_change = false;

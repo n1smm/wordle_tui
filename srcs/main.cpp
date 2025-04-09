@@ -6,7 +6,7 @@
 /*   By: thiew <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 12:00:36 by thiew             #+#    #+#             */
-/*   Updated: 2025/04/09 11:49:14 by thiew            ###   ########.fr       */
+/*   Updated: 2025/04/09 15:24:34 by thiew            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 winInfo g_win_size;
 bool	g_win_change(false);
+bool	g_input(false);
 std::atomic<bool>	g_exit_flag(false); // set to true when right signal is sent
 
 int	main(void)
@@ -33,6 +34,7 @@ int	main(void)
 	//input thread handling
 	std::atomic<char>	input_char = 0; //char received from user
 	std::thread	input_thread(checkInput, std::ref(g_exit_flag), std::ref(input_char));
+
 	//instatialize MatrixHandler
 	MatrixHandler Matrix;
 
@@ -46,10 +48,14 @@ int	main(void)
 	std::cout << NO_CURSOR;
 	while (!g_exit_flag)
 	{
-		Matrix.recalculate();
-		Matrix.rows();
-		Matrix.draw();
-		usleep(5000);
+		if (g_input == true || g_win_change == true)
+		{
+			Matrix.recalculate();
+			Matrix.rows();
+			Matrix.draw();
+			g_input = false;
+		}
+		usleep(800000);
 	}
 	std::cout << CURSOR;
 

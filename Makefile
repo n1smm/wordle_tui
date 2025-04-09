@@ -6,12 +6,12 @@
 #    By: thiew <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/16 01:25:37 by thiew             #+#    #+#              #
-#    Updated: 2025/04/08 14:05:55 by thiew            ###   ########.fr        #
+#    Updated: 2025/04/09 15:29:26 by thiew            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 C = g++
-CFLAGS = -Wall -Wextra -Werror --std=c++17 -g
+CFLAGS = -Wall -Wextra -Werror --std=c++17 -g -pthread
 INC_DIR = includes
 SRC_DIR = srcs
 OBJ_DIR = objs

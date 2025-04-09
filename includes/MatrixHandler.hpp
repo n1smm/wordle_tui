@@ -6,7 +6,7 @@
 /*   By: thiew <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 19:42:12 by thiew             #+#    #+#             */
-/*   Updated: 2025/04/09 11:29:31 by thiew            ###   ########.fr       */
+/*   Updated: 2025/04/09 14:52:32 by thiew            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,9 @@ class MatrixHandler
 		void		tile(size_t pos_x, size_t pos_y);
 
 	private:
-		std::vector<std::vector<const char *>>	_draw_matrix;
+		std::vector<std::vector<std::string>>	_draw_matrix;
 
 
 };
+
+std::string	macro_cast(const char *macro);

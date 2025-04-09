@@ -6,7 +6,7 @@
 /*   By: thiew <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/16 01:23:20 by thiew             #+#    #+#             */
-/*   Updated: 2025/04/08 20:55:14 by thiew            ###   ########.fr       */
+/*   Updated: 2025/04/09 15:22:46 by thiew            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,3 +38,4 @@ extern winInfo 				g_win_size;
 //global for exiting program
 extern std::atomic<bool>	g_exit_flag;
 extern bool					g_win_change;
+extern bool					g_input;

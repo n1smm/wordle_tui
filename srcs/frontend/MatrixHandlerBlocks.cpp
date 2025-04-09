@@ -6,7 +6,7 @@
 /*   By: thiew <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 15:54:00 by thiew             #+#    #+#             */
-/*   Updated: 2025/04/09 13:06:03 by thiew            ###   ########.fr       */
+/*   Updated: 2025/04/09 15:26:38 by thiew            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,29 +46,33 @@ void		MatrixHandler::tile(size_t pos_x, size_t pos_y)
             if (i == pos_y)
             {
                 if (j == pos_x)
-                    _draw_matrix[i][j] = LU_ANGLE; // Top left corner
+                    _draw_matrix[i][j] = macro_cast(LU_ANGLE); // Top left corner
                 else if (j == pos_x + g_win_size.tile_w - 1)
-                    _draw_matrix[i][j] = RU_ANGLE; // Top right corner
+                    _draw_matrix[i][j] = macro_cast(RU_ANGLE); // Top right corner
                 else
-                    _draw_matrix[i][j] = H_LINE;   // Top horizontal line
+                    _draw_matrix[i][j] = macro_cast(H_LINE);   // Top horizontal line
             }
             // Bottom row of the tile
             else if (i == pos_y + g_win_size.tile_h - 1)
             {
                 if (j == pos_x)
-                    _draw_matrix[i][j] = LD_ANGLE; // Bottom left corner
+                    _draw_matrix[i][j] = macro_cast(LD_ANGLE); // Bottom left corner
                 else if (j == pos_x + g_win_size.tile_w - 1)
-                    _draw_matrix[i][j] = RD_ANGLE; // Bottom right corner
+                    _draw_matrix[i][j] = macro_cast(RD_ANGLE); // Bottom right corner
                 else
-                    _draw_matrix[i][j] = H_LINE;   // Bottom horizontal line
+                    _draw_matrix[i][j] = macro_cast(H_LINE);   // Bottom horizontal line
             }
             // Middle rows
             else
             {
                 if (j == pos_x || j == pos_x + g_win_size.tile_w - 1)
-                    _draw_matrix[i][j] = V_LINE;   // Vertical borders on the sides
+                    _draw_matrix[i][j] = macro_cast(V_LINE);   // Vertical borders on the sides
                 else
-                    _draw_matrix[i][j] = EMPTY;
+				{
+					debugPrint("mcr: ", GREEN_BG EMPTY BG_RESET);
+                    _draw_matrix[i][j] = macro_cast(GREEN_BG EMPTY BG_RESET); 
+					debugPrint("mtx: ", _draw_matrix[i][j]);
+				}
 			}
 		}
 	}
