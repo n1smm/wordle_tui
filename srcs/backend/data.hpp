@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 13:32:24 by alerusso          #+#    #+#             */
-/*   Updated: 2025/04/09 13:07:22 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/04/09 15:13:09 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include <sys/time.h>
 # include "get_next_line_bonus.hpp"
 # include "../../includes/externLibs.hpp"
+# define DICTIONARY_NAME "words.txt"
 
 /*NOTE - 
 
@@ -68,9 +69,9 @@ typedef struct s_words
 typedef struct s_back_private
 {
 	t_words	**words;
-	char	*debug[30000];
-	int		index;
+	char	**dictionary;
 	Back	*back;
+	int		dict_size;
 }t_back_private;
 
 enum	Alphabet
@@ -143,5 +144,6 @@ void			get_dictionary(t_back_private *data);
 
 Back	*BackendInit(void);
 void	*BackendQuit(void);
+char	*RandomWord(void);
 
 #endif

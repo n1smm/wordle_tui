@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 16:04:17 by alerusso          #+#    #+#             */
-/*   Updated: 2025/04/09 12:37:47 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/04/09 15:06:30 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ void	*BackendQuit(void)
 		return (NULL);
 	if (mem->back)
 	{
-		free_and_null((void **)&mem->back->rand_word);
 		free_and_null((void **)&mem->back->user_input);
 		free_and_null((void **)&mem->back->check_input);
 	}
@@ -78,6 +77,7 @@ void	*BackendQuit(void)
 			free_matrix((void ***)&mem->words[i][j].num);
 	}
 	free_matrix((void ***)&mem->words);
+	free_and_null((void **)&mem->dictionary);
 	free_and_null((void **)&mem);
 	getter_backend(NULL, _YES);
 	return (NULL);

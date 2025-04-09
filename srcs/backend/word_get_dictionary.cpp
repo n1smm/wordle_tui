@@ -6,13 +6,15 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 15:47:56 by alerusso          #+#    #+#             */
-/*   Updated: 2025/04/09 12:42:54 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/04/09 14:57:43 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "data.hpp"
 
-void	insert_one(t_words **words, char *line, char *debug[30000], int *index)
+static void	realloc_dictionary(char ***dict, int dict_size);
+
+void	insert_one(t_words **words, char *line, char **dict, int *index)
 {
 	int	first_l;
 	int	second_l;
@@ -31,21 +33,49 @@ void	insert_one(t_words **words, char *line, char *debug[30000], int *index)
 	while (words[first_l][second_l].num[i])
 		++i;
 	words[first_l][second_l].num[i] = line;
-	debug[(*index)++] = words[first_l][second_l].num[i];
+	dict[(*index)++] = words[first_l][second_l].num[i];
 	words[first_l][second_l].last += 1;
 }
 
 void	get_dictionary(t_back_private *data)
 {
 	int		fd;
+	int		max_size;
 	char	*line;
 
-	fd = open("words.txt", O_RDONLY, 0666);
+	fd = open(DICTIONARY_NAME, O_RDONLY, 0666);
 	line = get_next_line(fd);
+	max_size = 1;
 	while (line)
 	{
-		insert_one(data->words, line, data->debug, &data->index);
+		if (data->dict_size == max_size - 1)
+		{
+			realloc_dictionary(&data->dictionary, data->dict_size);
+			max_size *= 2;
+		}
+		insert_one(data->words, line, data->dictionary, &data->dict_size);
 		line = get_next_line(fd);
 	}
 	close(fd);
+}
+
+static void	realloc_dictionary(char ***dict, int dict_size)
+{
+	char	**new_dict;
+	int		i;
+
+	alloc_word_matrix(&new_dict, dict_size * 2);
+	i = 0;
+	if (!*dict || !(*dict)[0])
+	{
+		*dict = new_dict;
+		return ;
+	}
+	while ((*dict)[i])
+	{
+		new_dict[i] = (*dict)[i];
+		++i;
+	}
+	free(*dict);
+	*dict = new_dict;
 }
