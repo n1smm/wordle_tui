@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thiew <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 12:00:36 by thiew             #+#    #+#             */
-/*   Updated: 2025/04/09 22:25:59 by thiew            ###   ########.fr       */
+/*   Updated: 2025/04/10 10:42:29 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ int	main(void)
 
 	//init backend
 	Back	*backend = BackendInit();
+	if (!backend)
+		return (1);
 	char *random_word = RandomWord();
 	debugPrint(backend->rand_word);
 	debugPrint(random_word);

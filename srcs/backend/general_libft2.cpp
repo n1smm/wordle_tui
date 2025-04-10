@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 11:13:39 by alerusso          #+#    #+#             */
-/*   Updated: 2025/04/09 19:48:50 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/04/10 10:43:54 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,12 @@ int	tokenize(char c)
 {
 	char	token;
 
-	if (c <= 'Z')
+	if (c >= 'A' && c <= 'Z')
 		token = c - 'A';
-	else
+	else if (c >= 'a' && c <= 'z')
 		token = c - 'a';
+	else
+		token = 0;
 	return ((int)token);
 }
 
