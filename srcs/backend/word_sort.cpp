@@ -6,12 +6,22 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 12:42:58 by alerusso          #+#    #+#             */
-/*   Updated: 2025/04/09 20:40:37 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/04/10 16:13:46 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/data.hpp"
 
+/*
+//REVIEW - RandomWord
+
+@description: 	Returns random word from dictionary generic matrix
+
+@returns: random word (NOT TO FREE)
+@params: none
+@calls: getter_backend, gettimeofday
+@called by: Main.cpp
+*/
 char	*RandomWord(void)
 {
 	struct timeval	time_values;

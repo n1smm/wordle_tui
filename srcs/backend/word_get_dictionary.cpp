@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 15:47:56 by alerusso          #+#    #+#             */
-/*   Updated: 2025/04/09 19:51:35 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/04/10 15:46:38 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,22 @@
 
 static void	realloc_dictionary(char ***dict, int dict_size);
 
+/*
+//REVIEW - insert_one
+
+@description: 	Insert one word from the dictionary, if:
+				Len is == 5;
+				Is in the english alphabet.
+
+@returns: none
+@params: 	1)	Matrix of words;
+			2)	Line taken from DICTIONARY_NAME file;
+			3)	Matrix of words in the dictionary;
+			4)	Ptr to the size of the dictionary.
+@calls: getter_backend, error_backend, ft_calloc
+		alloc_back_struct, alloc_word_matrix, get_dictionary
+@called by: Main.cpp
+*/
 void	insert_one(t_words **words, char *line, char **dict, int *index)
 {
 	int	first_l;
@@ -37,6 +53,17 @@ void	insert_one(t_words **words, char *line, char **dict, int *index)
 	words[first_l][second_l].last += 1;
 }
 
+/*
+//REVIEW - get_dictionary
+
+@description: 	Get data from DICTIONARY_NAME. Puts data in a general
+				matrix and in matrixes for every initial of letters (a-a, a-b)
+
+@returns: none
+@params: none
+@calls: getter_backend, error_backend, open, get_next_line, insert_one, close
+@called by: BackendInit
+*/
 void	get_dictionary(t_back_private *data)
 {
 	int		fd;
@@ -61,6 +88,18 @@ void	get_dictionary(t_back_private *data)
 	close(fd);
 }
 
+/*
+//REVIEW - realloc_dictionary
+
+@description: 	Double the size of the general dictionary
+
+@returns: none
+@params: 	1)	Ptr of the general dictionary;
+			2)	Current dictionary size.
+
+@calls: alloc_word_matrix, free
+@called by: get_dictionary
+*/
 static void	realloc_dictionary(char ***dict, int dict_size)
 {
 	char	**new_dict;

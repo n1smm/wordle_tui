@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 15:55:35 by alerusso          #+#    #+#             */
-/*   Updated: 2025/04/09 20:01:42 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/04/10 16:12:15 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,29 @@
 static int	check_guess(Back *back, char *input);
 static Back	*set_error(Back *back, int error);
 
+/*
+//REVIEW - WordSearch
+
+@description: 	Update the back struct, so:
+				valid_input is: 
+					set to 0 if RIGHT_INPUT,
+					set to 1 if WRONG_LEN,
+					set to 2 if WRONG_CHAR,
+					set to 3 if NOT_IN_DICTIONARY.
+				
+				check_input is a 5 len array.
+				Every member of the array represents the color that
+				must be used to color the word given by user.
+					0 means WRONG_LETTER (no color);
+					1 means WRONG_POSITION (yellow);
+					2 means RIGHT_LETTER (green).  
+
+@returns: Back struct ptr (no need to catch it. It updates it anyway.)
+@params: 	1)	Input;
+
+@calls: getter_backend, ft_strlen, set_error, DictCheck
+@called by: Main.cpp
+*/
 Back	*WordSearch(char *input)
 {
 	t_back_private	*data;
@@ -30,6 +53,17 @@ Back	*WordSearch(char *input)
 	return (data->back);
 }
 
+/*
+//REVIEW - DictCheck
+
+@description: 	Checks if word is in dictionary
+
+@returns: 1 if _YES, 0 if _NO
+@params: 	1)	Input;
+
+@calls: getter_backend, tokenize, ft_strncmp, set_error
+@called by: Main.cpp, WordSearch
+*/
 bool	DictCheck(char *input)
 {
 	int				first_l;
@@ -51,6 +85,19 @@ bool	DictCheck(char *input)
 	return (set_error(data->back, NOT_IN_DICTIONARY), _NO);
 }
 
+/*
+//REVIEW - check_guess
+
+@description: 	Utils of WordSearch. Updates victory to 1 if everything
+				is right.
+
+@returns: victory bool
+@params: 	1)	Back ptr;
+			2)	input.
+
+@calls: ft_strchr
+@called by: DictCheck
+*/
 static int	check_guess(Back *back, char *input)
 {
 	int	i;

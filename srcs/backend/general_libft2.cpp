@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 11:13:39 by alerusso          #+#    #+#             */
-/*   Updated: 2025/04/10 10:43:54 by alerusso         ###   ########.fr       */
+/*   Updated: 2025/04/10 14:57:58 by alerusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,18 @@
 
 int	tokenize(char c);
 
+/*
+//REVIEW - tokenize
+
+@description: 	Every letter is indexed as: A/a = 0; B/b = 1 ... Z/z = 25.
+				This function return a token of the letter value
+@returns: Token
+@params: 
+		1)	c character
+
+@calls: none
+@called by: get_dictionary, DictCheck
+*/
 int	tokenize(char c)
 {
 	char	token;
@@ -27,6 +39,18 @@ int	tokenize(char c)
 	return ((int)token);
 }
 
+/*
+//REVIEW - tokenize
+
+@description: 	Every letter is indexed as: A/a = 0; B/b = 1 ... Z/z = 25.
+				This function return a token of the letter value
+@returns: Token
+@params: 
+		1)	c character
+
+@calls: none
+@called by: Dictcheck
+*/
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
 	if (n == 0)
