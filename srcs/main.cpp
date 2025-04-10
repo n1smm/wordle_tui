@@ -6,7 +6,7 @@
 /*   By: alerusso <alerusso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 12:00:36 by thiew             #+#    #+#             */
-/*   Updated: 2025/04/10 14:02:26 by thiew            ###   ########.fr       */
+/*   Updated: 2025/04/10 14:05:25 by thiew            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,20 +114,19 @@ void 	starting_screen()
     std::string prompt = "Press any key to start.";
 	std::string prompt2 = " Press escape to exit.";
 
-    // Calculate the total number of lines to display:
-    // art + blank line + rules + blank line + prompt * 2.
+    // the total number of lines to display:
     int total_lines = art.size() + 1 + rules.size() + 2; 
 
-    // Calculate vertical (row) offset for centering in the window.
+    // vertical (row) offset for centering in the window.
     int start_row = (g_win_size.height - total_lines) / 2;
     if (start_row < 0)
         start_row = 0;
 
-    // Print enough blank lines before starting content.
+    // blank lines at start
     for (int i = 0; i < start_row; ++i)
         std::cout << "\n";
 
-    // Print ASCII art lines centered horizontally.
+    // Print ASCII art 
     for (const auto &line : art)
     {
         int pad = (g_win_size.width - line.size()) / 2;
@@ -158,19 +157,8 @@ void 	starting_screen()
 		std::cout << std::string(pad, ' ') << prompt2 << "\n";
     }
 
-// {
-	// 	int pad = (g_win_size.width - prompt.size()) / 2;
-	// 	if (pad < 0)
-	// 		pad = 0;
-	// 	std::cout << std::string(pad, ' ') << prompt2 << "\n";
-	// }
-
-
     std::string horizontal_border(g_win_size.width, '=');
     std::cout << "\033[H" << horizontal_border;
     std::cout << "\033[" << g_win_size.height << ";1H" << horizontal_border;
-
-    // Flush the output.
-    std::cout.flush();
 
 }
