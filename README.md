@@ -1,5 +1,7 @@
 # Wordle tui - a simple wordle game in C++ with a text user interface
 
+## [useful link for ansi escape codes](https://xn--rpa.cc/irl/term.html)
+
 
 
 ## uniform syntax rules/conventions
@@ -50,7 +52,7 @@
 
 ### structure
 ```
-this will be passed to backend std::string wordl;
+this will be passed to backend std::string wordle;
 
 backend functions:
 - random word
